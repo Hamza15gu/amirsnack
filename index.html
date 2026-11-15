@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سناك أمير</title>
+<style>
+:root{--gold:#ffc53d;--hot:#ff5a1f;--pink:#ff3d8b;--ink:#0a0807;--card:#15100d;--txt:#fff6ec;--mute:#bfa898}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI",Roboto,Tahoma,Arial,sans-serif;background:var(--ink);color:var(--txt);min-height:100vh;padding-bottom:120px;overflow-x:hidden}
+.hero{text-align:center;padding:50px 18px 24px}
+.logo{width:120px;height:120px;border-radius:34px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#120a06;background:conic-gradient(from 210deg,var(--gold),var(--hot),var(--pink),var(--gold));box-shadow:0 18px 50px rgba(255,90,31,.5);overflow:hidden}
+.title{font-size:clamp(3rem,13vw,5rem);font-weight:900;line-height:.95;background:linear-gradient(100deg,#fff6ec,var(--gold) 35%,var(--hot) 70%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:1.2rem;margin-top:12px;color:var(--mute)}
+.chip{display:inline-block;margin-top:20px;padding:9px 18px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,197,61,.35);color:var(--gold);font-weight:800;font-size:.9rem}
+.marquee{overflow:hidden;white-space:nowrap;margin:26px 0 6px;border-block:1px solid rgba(255,255,255,.08);padding:12px 0}
+.marquee div{display:inline-block;padding-inline-start:100%;animation:run 30s linear infinite;font-size:1.1rem;font-weight:900;color:rgba(255,246,236,.5)}
+.marquee span{margin:0 22px}.marquee span.g{color:var(--gold)}
+@keyframes run{to{transform:translateX(-100%)}}
+nav.cats{position:sticky;top:0;z-index:20;display:flex;gap:10px;overflow-x:auto;padding:14px 16px;background:rgba(10,8,7,.85);scrollbar-width:none}
+nav.cats button{flex:0 0 auto;border:none;background:rgba(255,255,255,.06);color:var(--txt);padding:10px 18px;border-radius:999px;font-size:.98rem;font-weight:800;cursor:pointer}
+nav.cats button.on{background:linear-gradient(100deg,var(--gold),var(--hot),var(--pink));color:#120a06}
+main{max-width:720px;margin:0 auto;padding:4px 14px 20px}
+.sec{display:flex;align-items:center;gap:14px;margin:40px 4px 18px;scroll-margin-top:84px}
+.sec .no{font-size:3.4rem;font-weight:900;color:transparent;-webkit-text-stroke:1.2px var(--gold)}
+.sec h2{font-size:1.9rem;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{position:relative;aspect-ratio:1/1;border-radius:26px;background:var(--card);overflow:hidden;opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.card.in{opacity:1;transform:none}
+.shell{position:absolute;inset:0;background:linear-gradient(145deg,#2a1a12,#120c09)}
+.ico{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4.5rem;opacity:.85}
+.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shell::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,5,4,.94),rgba(8,5,4,.4) 42%,transparent 68%)}
+.price{position:absolute;top:12px;left:12px;z-index:2;background:var(--gold);color:#120a06;font-weight:900;font-size:.85rem;padding:6px 12px;border-radius:12px}
+.info{position:absolute;inset:auto 0 0 0;z-index:2;padding:14px}
+.info h3{font-size:1.02rem;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.info p{font-size:.7rem;color:#eadccd;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctrl{display:flex;align-items:center;gap:8px;margin-top:10px}
+.ctrl button{height:36px;min-width:36px;padding:0 14px;border:none;border-radius:999px;background:linear-gradient(120deg,var(--gold),var(--hot));color:#120a06;font-size:1.1rem;font-weight:900;cursor:pointer}
+.ctrl span{font-weight:900;min-width:18px;text-align:center}
+.info-card{max-width:720px;margin:18px auto 0;padding:22px;border-radius:26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,197,61,.25)}
+.info-card h2{font-size:1.6rem;font-weight:900;color:var(--gold)}
+.info-card .meta{color:var(--mute);font-weight:700;margin-top:4px}
+.info-card .row{margin-top:10px;line-height:1.7}
+.info-card .row b{color:var(--gold)}
+.info-card .btns{display:flex;gap:10px;margin-top:16px}
+.info-card .btns a{flex:1;text-align:center;text-decoration:none;padding:13px;border-radius:16px;font-weight:900;color:#120a06;background:linear-gradient(100deg,var(--gold),var(--hot))}
+.info-card .btns a.ghost{background:rgba(255,255,255,.08);color:var(--txt)}
+.foot{text-align:center;color:#6b5a4f;font-size:.85rem;padding:12px 0 0}
+.bar{position:fixed;left:12px;right:12px;bottom:12px;max-width:696px;margin:0 auto;z-index:25;display:flex;align-items:center;justify-content:space-between;padding:10px 10px 10px 18px;border-radius:24px;background:rgba(24,17,13,.95);border:1px solid rgba(255,255,255,.12)}
+.bar .sum small{color:var(--mute);font-weight:600}
+.bar .sum b{color:var(--gold)}
+.bar button{border:none;border-radius:18px;padding:13px 22px;font-weight:900;font-size:1rem;background:linear-gradient(100deg,var(--gold),var(--hot),var(--pink));color:#120a06;cursor:pointer}
+.bar button:disabled{opacity:.3}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:40}
+.ov.open{display:flex}
+.sheet{width:100%;max-width:720px;max-height:86vh;overflow-y:auto;background:#1a120e;border-radius:30px 30px 0 0;padding:24px}
+.sheet h2{font-size:1.6rem;font-weight:900;margin-bottom:12px}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.line small{color:var(--mute)}
+.tot{display:flex;justify-content:space-between;font-size:1.25rem;font-weight:900;margin:18px 0;color:var(--gold)}
+.btn{display:block;width:100%;border:none;border-radius:20px;padding:16px;font-size:1.05rem;font-weight:900;margin-bottom:10px;text-align:center;text-decoration:none;background:linear-gradient(100deg,var(--gold),var(--hot),var(--pink));color:#120a06;cursor:pointer}
+.btn.ghost{background:rgba(255,255,255,.07);color:var(--txt)}
+.empty{text-align:center;color:var(--mute);padding:30px 0}
+.toast{position:fixed;top:92px;left:50%;transform:translateX(-50%);background:var(--gold);color:#120a06;font-weight:900;padding:11px 20px;border-radius:999px;opacity:0;transition:.35s;pointer-events:none;z-index:50;white-space:nowrap}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div id="logo" class="logo">SA</div>
+  <div class="title">سناك أمير</div>
+  <div class="sub">Snack Amir · نكهة تبقى معك</div>
+  <div class="chip">أكلات سريعة طازجة · الأسعار بالدرهم MAD</div>
+</header>
+
+<div class="marquee"><div id="mq"></div></div>
+<nav class="cats" id="cats"></nav>
+<main id="menu"></main>
+
+<section class="info-card">
+  <h2>سناك الأمير</h2>
+  <div class="meta">Fast food restaurant · ⭐ 4.2 نجوم</div>
+  <div class="row">📍 <b>العنوان:</b> LOT KASBAT EL AMINE, Rue 3, Casablanca 20190, Morocco</div>
+  <div class="row">🧭 <b>Plus Code:</b> G8M9+4C Casablanca, Morocco</div>
+  <div class="row">🕒 <b>الحالة:</b> مغلق · يفتح الساعة 11 صباحاً</div>
+  <div class="row">🗓️ <b>ساعات السبت:</b> 11 صباحاً – 12:30 صباحاً</div>
+  <div class="row">📞 <b>الهاتف:</b> +212 6 59 13 44 28</div>
+  <div class="btns">
+    <a href="tel:+212659134428">اتصل بنا</a>
+    <a class="ghost" href="https://maps.google.com/?q=33.53275,-7.68145" target="_blank" rel="noopener">الموقع على الخريطة</a>
+  </div>
+</section>
+<div class="foot">سناك أمير © 2026</div>
+
+<div class="bar">
+  <div class="sum"><span id="count">0</span> <small>عنصر</small> · <b><span id="total">0</span> MAD</b></div>
+  <button id="openCart" disabled>عرض السلة</button>
+</div>
+
+<div class="ov" id="cartOv"><div class="sheet">
+  <h2>سلتك</h2>
+  <div id="cartItems"></div>
+  <div class="tot"><span>المجموع</span><span><span id="sheetTotal">0</span> MAD</span></div>
+  <button class="btn" id="goForm">إرسال الطلب عبر واتساب</button>
+  <a id="waLink" class="btn" target="_blank" rel="noopener" style="display:none">فتح واتساب</a>
+  <button class="btn ghost" id="closeCart">إغلاق</button>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// رابط شعار المطعم (اتركه فارغاً إن لم يكن لديك شعار)
+const LOGO_URL = "https://picturetolink.com/i/QyAuK0r3L0.jpg";
+
+// روابط صور الأصناف (اتركها فارغة إن لم تكن لديك صورة)
+const IMG = {
+  "Tacos Mixte": "https://picturetolink.com/i/FOLXwJz5tI.jpg",
+  "Tacos Poulet": "https://picturetolink.com/i/lT7kWWUTPr.jpg",
+  "Tacos Nuggets": "https://picturetolink.com/i/vSJYiR51Ba.jpg",
+  "Tacos Viande Hachée": "https://picturetolink.com/i/9pOF0te4lE.jpg",
+  "Tacos Cordon Bleu": "https://picturetolink.com/i/cnIyxfS4aD.jpg",
+  "Salade Nicoise": "https://picturetolink.com/i/cxfdbLn6sI.jpg",
+  "Sandwich Viande Hachée": "https://picturetolink.com/i/pfFE5dJss8.jpg",
+  "Sandwich Mixte": "https://picturetolink.com/i/wphGLHrhLy.jpg",
+  "Sandwich Poulet": "https://picturetolink.com/i/HmC2jC1LMR.jpg",
+  "Sandwich Thon": "https://picturetolink.com/i/okZNHEm6WK.jpg",
+  "Pizza Margarita": "https://picturetolink.com/i/DM4WD9rLoK.jpg",
+  "Pizza Poulet": "https://picturetolink.com/i/3NAbvEQ7LG.jpg",
+  "Pizza Charcuterie": "https://picturetolink.com/i/u8oji1fTMl.jpg",
+  "Pizza Thon": "https://picturetolink.com/i/ab0Nr9GWoM.jpg",
+  "Pizza Viande Hachée": "https://picturetolink.com/i/3erSd44f8o.jpg",
+  "Cheese Burger": "https://picturetolink.com/i/DcCGfjD1jj.jpg",
+  "Chicken Burger": "https://picturetolink.com/i/RSJ1RydY9L.jpg",
+  "Egg Burger": "https://picturetolink.com/i/5Id4A8D56x.jpg",
+  "Fraise": "https://picturetolink.com/i/1ZKNeXWPti.jpg",
+  "Banane": "https://picturetolink.com/i/xn7bygJDMM.jpg",
+  "Avocat": "https://picturetolink.com/i/KA21beWrRj.jpg",
+  "Kiwi": "https://picturetolink.com/i/bgvorraR1Q.jpg",
+  "Mangue": "https://picturetolink.com/i/N3zjenVmWZ.jpg"
+};
+
+const MENU = {
+  "Tacos": { icon:"🌮", items:[
+    { name:"Tacos Mixte", desc:"viande hachée, poulet, charcuterie, frites, fromage", price:55 },
+    { name:"Tacos Poulet", desc:"poulet, frites, fromage, sauce au choix", price:49 },
+    { name:"Tacos Nuggets", desc:"nuggets, frites, fromage, sauce au choix", price:55 },
+    { name:"Tacos Viande Hachée", desc:"viande hachée, frites, fromage, sauce au choix", price:49 },
+    { name:"Tacos Cordon Bleu", desc:"cordon bleu", price:55 }
+  ]},
+  "Salades": { icon:"🥗", items:[
+    { name:"Salade Nicoise", desc:"thon, riz, légumes, œufs, maïs, mayonnaise", price:35 }
+  ]},
+  "Sandwich": { icon:"🥖", items:[
+    { name:"Sandwich Viande Hachée", desc:"laitue, tomate, viande hachée, fromage", price:33 },
+    { name:"Sandwich Mixte", desc:"laitue, tomate, poulet, viande hachée, fromage", price:40 },
+    { name:"Sandwich Poulet", desc:"laitue, tomate, poulet, fromage", price:33 },
+    { name:"Sandwich Thon", desc:"laitue, tomate, riz, pommes de terre, thon, fromage", price:25 }
+  ]},
+  "Pizzas": { icon:"🍕", items:[
+    { name:"Pizza Margarita", desc:"sauce tomate, mozzarella", price:39 },
+    { name:"Pizza Poulet", desc:"sauce tomate, mozzarella, poulet, poivron", price:45 },
+    { name:"Pizza Charcuterie", desc:"sauce tomate, mozzarella, charcuterie", price:45 },
+    { name:"Pizza Thon", desc:"sauce tomate, mozzarella, thon, poivron", price:45 },
+    { name:"Pizza Viande Hachée", desc:"sauce tomate, mozzarella, viande hachée, poivron", price:45 }
+  ]},
+  "Burgers": { icon:"🍔", items:[
+    { name:"Cheese Burger", desc:"laitue, tomate, viande hachée, fromage", price:45 },
+    { name:"Chicken Burger", desc:"laitue, tomate, poulet, fromage", price:45 },
+    { name:"Egg Burger", desc:"laitue, tomate, viande hachée, œuf, fromage", price:45 }
+  ]},
+  "Jus": { icon:"🥤", items:[
+    { name:"Fraise", desc:"fraise orange", price:25 },
+    { name:"Banane", desc:"banane au lait", price:16 },
+    { name:"Avocat", desc:"avocat au lait", price:23 },
+    { name:"Kiwi", desc:"kiwi à orange", price:22 },
+    { name:"Mangue", desc:"mangue à l'orange", price:25 }
+  ]}
+};
+
+const cart = {};
+const $ = id => document.getElementById(id);
+const cats = Object.keys(MENU);
+
+if (LOGO_URL) $("logo").innerHTML = `<img src="${LOGO_URL}" alt="" style="width:100%;height:100%;object-fit:cover">`;
+
+$("mq").innerHTML = [...cats, ...cats].map((c, i) => `<span class="${i % 2 ? 'g' : ''}">${MENU[c].icon} ${c}</span>`).join("");
+
+cats.forEach((c, i) => {
+  const b = document.createElement("button");
+  b.textContent = MENU[c].icon + " " + c;
+  b.onclick = () => $("s" + i).scrollIntoView({ behavior:"smooth", block:"start" });
+  $("cats").appendChild(b);
+});
+const navBtns = [...$("cats").children];
+
+const reveal = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); reveal.unobserve(e.target); } }), { threshold:.1 });
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { const i = cats.findIndex((_, k) => $("s" + k) === e.target); navBtns.forEach((b, k) => b.classList.toggle("on", k === i)); }
+}), { rootMargin:"-40% 0px -55% 0px" });
+
+cats.forEach((c, i) => {
+  const h = document.createElement("div");
+  h.className = "sec"; h.id = "s" + i;
+  h.innerHTML = `<span class="no">${String(i + 1).padStart(2, "0")}</span><h2>${c}</h2>`;
+  $("menu").appendChild(h); spy.observe(h);
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  MENU[c].items.forEach(item => {
+    item.key = c + "|" + item.name;
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.key = item.key;
+    const media = IMG[item.name]
+      ? `<img class="ph" src="${IMG[item.name]}" alt="${item.name}">`
+      : `<span class="ico">${MENU[c].icon}</span>`;
+    card.innerHTML = `
+      <div class="shell">${media}
+        <span class="price">${item.price} MAD</span>
+        <div class="info"><h3>${item.name}</h3><p>${item.desc}</p><div class="ctrl"></div></div>
+      </div>`;
+    grid.appendChild(card); reveal.observe(card);
+  });
+  $("menu").appendChild(grid);
+});
+
+function findItem(key) { const [c, n] = key.split("|"); return MENU[c].items.find(i => i.name === n); }
+
+function renderCtrls() {
+  document.querySelectorAll(".card").forEach(card => {
+    const item = findItem(card.dataset.key);
+    const q = cart[item.key] ? cart[item.key].qty : 0;
+    const el = card.querySelector(".ctrl");
+    if (!q) {
+      el.innerHTML = `<button>+ أضف</button>`;
+      el.querySelector("button").onclick = () => change(item.key, 1);
+    } else {
+      el.innerHTML = `<button>+</button><span>${q}</span><button>−</button>`;
+      const [p, m] = el.querySelectorAll("button");
+      p.onclick = () => change(item.key, 1);
+      m.onclick = () => change(item.key, -1);
+    }
+  });
+}
+
+function change(key, d) {
+  const item = findItem(key);
+  const n = (cart[key] ? cart[key].qty : 0) + d;
+  if (n <= 0) delete cart[key]; else cart[key] = { name:item.name, price:item.price, qty:n };
+  if (d > 0) toast("✓ تمت إضافة " + item.name);
+  refresh();
+}
+
+function totals() { let c = 0, s = 0; Object.values(cart).forEach(l => { c += l.qty; s += l.qty * l.price; }); return { c, s }; }
+
+function refresh() {
+  renderCtrls();
+  const { c, s } = totals();
+  $("count").textContent = c; $("total").textContent = s; $("sheetTotal").textContent = s;
+  $("openCart").disabled = c === 0;
+  renderCart();
+}
+
+function renderCart() {
+  const lines = Object.entries(cart);
+  $("cartItems").innerHTML = lines.length ? lines.map(([k, l]) => `
+    <div class="line"><div><div>${l.name}</div><small>${l.price} MAD × ${l.qty}</small></div>
+    <div class="ctrl" style="margin:0"><button data-k="${k}" data-d="1">+</button><span>${l.qty}</span><button data-k="${k}" data-d="-1">−</button></div></div>`).join("")
+    : `<div class="empty">السلة فارغة</div>`;
+  $("cartItems").querySelectorAll("button").forEach(b => b.onclick = () => change(b.dataset.k, +b.dataset.d));
+}
+
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 1300); }
+const show = (id, on) => $(id).classList.toggle("open", on);
+
+$("openCart").onclick = () => { renderCart(); show("cartOv", true); };
+$("closeCart").onclick = () => show("cartOv", false);
+$("goForm").onclick = () => sendOrder();
+
+function sendOrder() {
+  if (!Object.keys(cart).length) { toast("السلة فارغة"); return; }
+  const lines = Object.values(cart).map(l => `- ${l.name} × ${l.qty} = ${l.price * l.qty} MAD`).join("\n");
+  const base = `طلب جديد من سناك أمير\n\n${lines}\n\nالمجموع: ${totals().s} MAD`;
+  const finish = loc => {
+    const text = base + (loc ? `\nالموقع: https://maps.google.com/?q=${loc}` : "\nالموقع: لم يُشارَك");
+    const url = "https://wa.me/212659134428?text=" + encodeURIComponent(text);
+    const link = $("waLink");
+    link.href = url; link.style.display = "block";
+    if (!window.open(url, "_blank")) toast("اضغط على فتح واتساب لإرسال الطلب");
+  };
+  if (!navigator.geolocation) { finish(null); return; }
+  toast("جارٍ تحديد موقعك...");
+  navigator.geolocation.getCurrentPosition(
+    p => finish(p.coords.latitude.toFixed(6) + "," + p.coords.longitude.toFixed(6)),
+    () => finish(null),
+    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+  );
+}
+
+refresh();
+</script>
+</body>
+</html>
